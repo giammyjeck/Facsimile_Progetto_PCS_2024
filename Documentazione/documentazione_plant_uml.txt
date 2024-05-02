@@ -1,0 +1,47 @@
+@startuml
+
+'Questo è un commento
+
+package GeometryLibrary <<Folder>>
+{
+class Triangle
+{
++ Vertices : Matrix3d	'il + indica che è pubblico
++ Triangle(Vertices)
++ double computeArea()
+}
+
+
+class Polygons
+{
++ Vertices : MatrixXd
++ listPolygons : vector<vector<unsigned int>> 
++ vector<vector<vector<unsigned int>>> computeTriangulation()
++ vector<double> computeArea()
++ void gedimInterface(v<v<unsigned int>>&) 'per parlare con la libreria del prof vicini
+.. Non member function..
+void importPolygons(path, polygons)
+..TEST POLYGONS..
+TESTCOMPUTEAREA
+TESTTRIANGULATIONS
+}
+}
+
+
+package Gedim <<Frame>>
+{
+}
+
+note "Gedim è una libreria esterna" as GedimN
+GedimN .. Gedim
+
+' voglio mettere un collegamento fra Gedim e la funzione che la sfrutta
+Gedim ..> Polygons::gedimInterface
+
+'per fare un aggregazione 
+Triangle "many" --o "1" Polygons : è fatto da	 
+
+
+
+
+@endulm
